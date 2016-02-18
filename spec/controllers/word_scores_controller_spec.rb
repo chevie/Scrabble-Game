@@ -38,7 +38,11 @@ RSpec.describe WordScoresController, type: :controller do
       it 'calculates the score of the word' do
         post :create, {:word_score => {word: "foo"}}
         expect( WordScore.find_by(word: "foo").score).to eq 6
-        
+      end
+      
+      it 'converts the word to lowercase' do
+        post :create, {:word_score => {word: "FoO"}}
+        expect( WordScore.last.word).to eq "foo"
       end
 
       it "assigns a newly created word_score as @word_score" do
