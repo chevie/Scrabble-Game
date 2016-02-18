@@ -48,9 +48,8 @@
         <a class="navbar-brand" href="#">Scrabble Scoring App</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "Link1", "/path1"  %></li>
-            <li><%= link_to "Link2", "/path2"  %></li>
-            <li><%= link_to "Link3", "/path3"  %></li>
+              <li><%= link_to "Word Score Index", word_scores_path  %></li>
+              <li><%= link_to "Calculate New Score", new_word_score_path  %></li>
           </ul>
         </div>
       </div>
@@ -62,21 +61,10 @@
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
-        <div class="col-lg-3">
-          <div class="well sidebar-nav">
-            <h3>Sidebar</h3>
-            <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
       </div><!--/row-->
 
       <footer>
-        <p>&copy; Company 2016</p>
+        <p>&copy; CMuz 2016</p>
       </footer>
 
     </div> <!-- /container -->
