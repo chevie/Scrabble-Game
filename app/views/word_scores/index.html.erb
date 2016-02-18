@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Scrabble Word Scores</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Word</th>
+      <th>Score</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @word_scores.each do |word_score| %>
+      <tr>
+        <td><%= word_score.word %></td>
+        <td><%= word_score.score %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Word score', new_word_score_path %>

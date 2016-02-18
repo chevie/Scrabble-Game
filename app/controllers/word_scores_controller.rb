@@ -4,7 +4,7 @@ class WordScoresController < ApplicationController
   # GET /word_scores
   # GET /word_scores.json
   def index
-    @word_scores = WordScore.all
+    @word_scores = WordScore.all.order(:score)
   end
 
   # GET /word_scores/1
