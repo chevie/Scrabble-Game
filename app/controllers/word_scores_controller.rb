@@ -26,7 +26,7 @@ class WordScoresController < ApplicationController
   # POST /word_scores.json
   def create
 
-    @word = word_score_params[:word].downcase!
+    @word = word_score_params[:word].downcase
     score_calculator
     
     @word_score = WordScore.new(word: @word, score: @score)
