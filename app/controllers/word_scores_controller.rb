@@ -1,5 +1,6 @@
 class WordScoresController < ApplicationController
   # before_action :set_word_score, only: [:show, :edit, :update, :destroy]
+  before_action :set_word_score, only: [:show]
 
   # GET /word_scores
   # GET /word_scores.json
@@ -9,8 +10,8 @@ class WordScoresController < ApplicationController
 
   # GET /word_scores/1
   # GET /word_scores/1.json
-  # def show
-  # end
+  def show
+  end
 
   # GET /word_scores/new
   def new
@@ -25,14 +26,14 @@ class WordScoresController < ApplicationController
   # POST /word_scores.json
   def create
 
-    @word = word_score_params[:word]
+    @word = word_score_params[:word].downcase!
     score_calculator
     
     @word_score = WordScore.new(word: @word, score: @score)
 
     respond_to do |format|
       if @word_score.save
-        format.html { redirect_to word_scores_path, notice: 'Word score was successfully created.' }
+        format.html { redirect_to @word_score, notice: 'Word score was successfully created.' }
         format.json { render :index, status: :created, location: @word_score }
       else
         format.html { render :new }
@@ -64,12 +65,12 @@ class WordScoresController < ApplicationController
   #     format.json { head :no_content }
   #   end
   # end
-
+  
   private
     # Use callbacks to share common setup or constraints between actions.
-    # def set_word_score
-    #   @word_score = WordScore.find(params[:id])
-    # end
+    def set_word_score
+      @word_score = WordScore.find(params[:id])
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def word_score_params

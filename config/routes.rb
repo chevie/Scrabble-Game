@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  resources :word_scores, only: [:index, :new, :create]
+  resources :word_scores, only: [:index, :new, :create, :show]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root 'application#hello'
+  root 'word_scores#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
