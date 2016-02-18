@@ -24,12 +24,16 @@ class WordScoresController < ApplicationController
   # POST /word_scores
   # POST /word_scores.json
   def create
-    @word_score = WordScore.new(word_score_params)
+
+    @word = word_score_params[:word]
+    score_calculator
+    
+    @word_score = WordScore.new(word: @word, score: @score)
 
     respond_to do |format|
       if @word_score.save
-        format.html { redirect_to @word_score, notice: 'Word score was successfully created.' }
-        format.json { render :show, status: :created, location: @word_score }
+        format.html { redirect_to word_scores_path, notice: 'Word score was successfully created.' }
+        format.json { render :index, status: :created, location: @word_score }
       else
         format.html { render :new }
         format.json { render json: @word_score.errors, status: :unprocessable_entity }
@@ -63,12 +67,40 @@ class WordScoresController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_word_score
-      @word_score = WordScore.find(params[:id])
-    end
+    # def set_word_score
+    #   @word_score = WordScore.find(params[:id])
+    # end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def word_score_params
       params.require(:word_score).permit(:word)
+    end
+    
+    def score_calculator
+      @score = 0
+      @word.each_char do |letter|
+         @score += determine_character_value letter
+      end
+    end
+        
+    def determine_character_value character
+      case character
+      when 'a', 'e', 'i', 'o', 'u', 'l', 'n', 's', 't', 'r'
+          1
+      when 'd', 'g'
+          2
+      when 'b', 'c', 'm', 'p'
+          3
+      when 'f', 'h', 'v', 'w', 'y'
+          4
+      when 'k'
+          5
+      when 'j', 'x'
+          8
+      when 'q', 'z'
+          10
+      else
+          0
+      end
     end
 end
