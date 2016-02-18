@@ -1,25 +1,37 @@
-<%= form_for(@word_score) do |f| %>
-  <% if @word_score.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@word_score.errors.count, "error") %> prohibited this word_score from being saved:</h2>
+<%= form_for @word_score, :html => { :class => "form-horizontal word_score" } do |f| %>
 
-      <ul>
-      <% @word_score.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <% if @word_score.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@word_score.errors.count, "error") %> prohibited this word_score from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @word_score.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :word %><br>
-    <%= f.text_field :word %>
+  <div class="form-group">
+    <%= f.label :word, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :word, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:word) %>
   </div>
-  <!--<div class="field">-->
-  <!--  <%= f.label :score %><br>-->
-  <!--  <%= f.number_field :score %>-->
-  <!--</div>-->
-  <div class="actions">
-    <%= f.submit "Calculate Word Score" %>
+  <div class="form-group">
+    <%=f.error_span(:score) %>
   </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit "Calculate Word Score", :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                word_scores_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
 <% end %>

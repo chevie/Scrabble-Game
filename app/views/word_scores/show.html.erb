@@ -1,0 +1,14 @@
+<%- model_class = WordScore -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:word) %>:</strong></dt>
+  <dd><%= @word_score.word %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:score) %>:</strong></dt>
+  <dd><%= @word_score.score %></dd>
+</dl>
+
+<%= link_to "Word Scores Index", word_scores_path, :class => 'btn btn-default'  %>
+<%= link_to "Calculate the Score of a New Word", new_word_score_path, :class => 'btn btn-default'  %>

@@ -1,16 +1,19 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = WordScore -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
 
-<h1>Scrabble Word Scores</h1>
+<%= link_to "Calculate the Score of a New Word",
+            new_word_score_path,
+            :class => 'btn btn-primary' %>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Word</th>
-      <th>Score</th>
-      <th colspan="3"></th>
+      <th><%= model_class.human_attribute_name(:word) %></th>
+      <th><%= model_class.human_attribute_name(:score) %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @word_scores.each do |word_score| %>
       <tr>
@@ -20,7 +23,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Word score', new_word_score_path %>
