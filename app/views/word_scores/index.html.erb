@@ -10,15 +10,15 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:word) %></th>
       <th><%= model_class.human_attribute_name(:score) %></th>
+      <th><%= model_class.human_attribute_name(:word) %></th>
     </tr>
   </thead>
   <tbody>
     <% @word_scores.each do |word_score| %>
       <tr>
+        <td width="20%"><%= word_score.score %></td>
         <td><%= word_score.word %></td>
-        <td><%= word_score.score %></td>
       </tr>
     <% end %>
   </tbody>

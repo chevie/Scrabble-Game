@@ -1,5 +1,4 @@
 class WordScoresController < ApplicationController
-  # before_action :set_word_score, only: [:show, :edit, :update, :destroy]
   before_action :set_word_score, only: [:show]
 
   # GET /word_scores
@@ -18,14 +17,11 @@ class WordScoresController < ApplicationController
     @word_score = WordScore.new
   end
 
-  # GET /word_scores/1/edit
-  # def edit
-  # end
-
   # POST /word_scores
   # POST /word_scores.json
   def create
 
+    # Automatically convert the word to lowercase (although all legitimate words should already be lowercase)
     @word = word_score_params[:word].downcase
     score_calculator
     
@@ -42,30 +38,6 @@ class WordScoresController < ApplicationController
     end
   end
 
-  # PATCH/PUT /word_scores/1
-  # PATCH/PUT /word_scores/1.json
-  # def update
-  #   respond_to do |format|
-  #     if @word_score.update(word_score_params)
-  #       format.html { redirect_to @word_score, notice: 'Word score was successfully updated.' }
-  #       format.json { render :show, status: :ok, location: @word_score }
-  #     else
-  #       format.html { render :edit }
-  #       format.json { render json: @word_score.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
-
-  # DELETE /word_scores/1
-  # DELETE /word_scores/1.json
-  # def destroy
-  #   @word_score.destroy
-  #   respond_to do |format|
-  #     format.html { redirect_to word_scores_url, notice: 'Word score was successfully destroyed.' }
-  #     format.json { head :no_content }
-  #   end
-  # end
-  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_word_score
@@ -77,6 +49,7 @@ class WordScoresController < ApplicationController
       params.require(:word_score).permit(:word)
     end
     
+    # Calculate the score of the word one letter at a time
     def score_calculator
       @score = 0
       @word.each_char do |letter|
@@ -84,6 +57,7 @@ class WordScoresController < ApplicationController
       end
     end
         
+    # Determine the value of the character in question
     def determine_character_value character
       case character
       when 'a', 'e', 'i', 'o', 'u', 'l', 'n', 's', 't', 'r'
