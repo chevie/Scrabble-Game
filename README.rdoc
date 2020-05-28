@@ -1,28 +1,21 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This repository answers the following 2 questions:
 
-Things you may want to cover:
+QUESTION 1
+Please develop a web application that is used to determine the scrabble score of each word that a
+user enters on the user interface. Please pay attention to rubbish input data.
 
-* Ruby version
+QUESTION 2
+Once you have completed question 1, please then introduce a sorted list of previous scores. This list
+will display the user entered word and its corresponding scrabble score. The list must be sorted in
+lowest to highest score and must refresh on every new word that is entered by the user.
 
-* System dependencies
+Additional clarifying points:
 
-* Configuration
+* The web application input is a single word.
+* Rubbish input data would includes numbers, special characters and spaces.
+* Ignore interconnection and location of words on board. Assume each character of any word (input) earns the score as per the resource supplied.
+* Duplicates are acceptable.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
