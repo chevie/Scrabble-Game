@@ -17,5 +17,3 @@ Additional clarifying points:
 * Rubbish input data would includes numbers, special characters and spaces.
 * Ignore interconnection and location of words on board. Assume each character of any word (input) earns the score as per the resource supplied.
 * Duplicates are acceptable.
-
-<tt>rake doc:app</tt>.
